@@ -3,18 +3,30 @@ build/
 bin/
 obj/
 
-# IDE files
-.vs/
-.vscode/
-*.sln
-*.vcxproj*
-*.user
-
 # Compiled files
 *.exe
+*.obj
+*.pdb
+*.ilk
 *.out
 *.o
 *.a
+
+# Visual Studio files
+.vs/
+*.vcxproj
+*.vcxproj.filters
+*.sln
+*.suo
+
+# Debug files
+Debug/
+Release/
+x64/
+*.log
+
+# IDE files
+.vscode/
 
 # OS files
 .DS_Store
