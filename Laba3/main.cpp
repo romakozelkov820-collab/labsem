@@ -14,7 +14,7 @@ int main() {
     int choice;
     if (!(cin >> choice)) return 0;
     string line;
-    getline(cin, line); // consume newline
+    getline(cin, line); 
 
     cout << "Введите строку: ";
     getline(cin, line);
