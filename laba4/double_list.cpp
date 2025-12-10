@@ -1,6 +1,7 @@
-#include "../include/double_list.h"
+#include "DoubleList.h"
 
-// Деструктор
+template<typename T>
+DoubleList<T>::DoubleList() : head(nullptr), tail(nullptr), count(0) {}
 
 template<typename T>
 DoubleList<T>::~DoubleList() {
@@ -11,8 +12,6 @@ DoubleList<T>::~DoubleList() {
         cur = tmp;
     }
 }
-
-// push_back
 
 template<typename T>
 void DoubleList<T>::push_back(const T& value) {
@@ -26,8 +25,6 @@ void DoubleList<T>::push_back(const T& value) {
     count++;
 }
 
-// print
-
 template<typename T>
 void DoubleList<T>::print() const {
     Node* cur = head;
@@ -38,21 +35,19 @@ void DoubleList<T>::print() const {
     std::cout << "\n";
 }
 
-// Shell Sort
-
+// ---------------- Shell Sort (через вектор) ----------------
 template<typename T>
 void DoubleList<T>::shell_sort() {
     if (count < 2) return;
 
-    // Перегоняем в vector
     std::vector<T> v;
     v.reserve(count);
+
     for (Node* cur = head; cur; cur = cur->next)
         v.push_back(cur->data);
 
     shell_sort_vector(v);
 
-    // Обратно в список
     Node* cur = head;
     size_t i = 0;
     while (cur) {
@@ -61,14 +56,14 @@ void DoubleList<T>::shell_sort() {
     }
 }
 
-// Quick Sort
-
+// ---------------- Quick Sort ----------------
 template<typename T>
 void DoubleList<T>::quick_sort() {
     if (count < 2) return;
 
     std::vector<T> v;
     v.reserve(count);
+
     for (Node* cur = head; cur; cur = cur->next)
         v.push_back(cur->data);
 
@@ -81,3 +76,5 @@ void DoubleList<T>::quick_sort() {
         cur = cur->next;
     }
 }
+
+template class DoubleList<int>;
