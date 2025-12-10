@@ -1,13 +1,9 @@
 #include "DoubleList.h"
-
-// Constructor / Destructor
 template<typename T>
 DoubleList<T>::DoubleList() : head(nullptr), tail(nullptr), count(0) {}
 
 template<typename T>
 DoubleList<T>::~DoubleList() { clear(); }
-
-// push_front
 template<typename T>
 void DoubleList<T>::push_front(const T& val) {
     Element* e = new Element(val);
@@ -19,7 +15,7 @@ void DoubleList<T>::push_front(const T& val) {
     ++count;
 }
 
-// push_back
+
 template<typename T>
 void DoubleList<T>::push_back(const T& val) {
     Element* e = new Element(val);
@@ -31,7 +27,7 @@ void DoubleList<T>::push_back(const T& val) {
     ++count;
 }
 
-// insert at index 0..count
+
 template<typename T>
 void DoubleList<T>::insert(int index, const T& val) {
     if (index < 0 || index > (int)count) throw std::out_of_range("insert index");
@@ -111,7 +107,7 @@ void DoubleList<T>::clear() {
     count = 0;
 }
 
-// reverse by swapping next/prev pointers
+
 template<typename T>
 void DoubleList<T>::reverse() {
     Element* cur = head;
@@ -120,12 +116,10 @@ void DoubleList<T>::reverse() {
         tmp = cur->prev;
         cur->prev = cur->next;
         cur->next = tmp;
-        cur = cur->prev; // moved to original next
+        cur = cur->prev; 
     }
     if (tmp) {
-        // tmp is prev of last processed element, new head is tmp->prev
         head = tmp->prev;
-        // recompute tail
         tail = head;
         while (tail && tail->next) tail = tail->next;
     }
