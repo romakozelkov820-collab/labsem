@@ -39,7 +39,7 @@ public:
     void clear();
     void reverse();
 
-    // Iterator
+
     class Iterator {
         DoubleList<T>* list;
         Element* cur;
@@ -62,6 +62,6 @@ public:
     Iterator end();
 };
 
-#include "DoubleList.cpp" // include template implementation
+#include "DoubleList.cpp" 
 
-#endif // DOUBLELIST_H
+#endif
