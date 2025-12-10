@@ -4,10 +4,6 @@
 #include <algorithm>
 #include <filesystem>
 #include <fstream>
-
-// One-phase merge: produce runs and merge them in single k-way merge using a min-heap.
-// For simplicity write runs to files as in two-phase, but perform a single k-way merge of all runs.
-
 template<typename T>
 static std::string write_run_and_get_file(const std::vector<T>& run, int idx) {
     std::string fname = "tmp_run_one_" + std::to_string(idx) + ".bin";
@@ -40,12 +36,9 @@ std::vector<T> one_phase_merge_sort(const std::vector<T>& input, size_t run_size
         run_files.push_back(write_run_and_get_file<T>(run, idx++));
     }
 
-    // k-way merge all runs using heap
     struct Node { T val; size_t run_idx; size_t pos; };
     struct Cmp { bool operator()(const Node& a, const Node& b) const { return a.val > b.val; } };
     std::priority_queue<Node, std::vector<Node>, Cmp> heap;
-
-    // load all runs into memory buffers (since runs small; for true external we'd stream)
     std::vector<std::vector<T>> buffers;
     buffers.reserve(run_files.size());
     for (auto &f : run_files) buffers.push_back(read_bin_small<T>(f));
@@ -64,7 +57,6 @@ std::vector<T> one_phase_merge_sort(const std::vector<T>& input, size_t run_size
         if (p < buffers[r].size()) heap.push(Node{buffers[r][p], r, p});
     }
 
-    // cleanup files
     for (auto &f: run_files) std::filesystem::remove(f);
     return out;
 }
