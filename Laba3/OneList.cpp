@@ -1,14 +1,10 @@
 #include "OneList.h"
 
-// ------------------ Конструкторы ------------------
-
 template<typename T>
 OneList<T>::OneList() : head(nullptr), tail(nullptr), count(0) {}
 
 template<typename T>
 OneList<T>::~OneList() { clear(); }
-
-// ------------------ Основные методы ------------------
 
 template<typename T>
 void OneList<T>::push_front(const T& val) {
@@ -128,8 +124,6 @@ void OneList<T>::reverse() {
     }
     head = prev;
 }
-
-// ------------------ Итератор ------------------
 
 template<typename T>
 OneList<T>::Iterator::Iterator(OneList<T>* l, Element* p) : list(l), cur(p) {}
