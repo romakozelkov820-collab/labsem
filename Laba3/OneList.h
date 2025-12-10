@@ -59,6 +59,5 @@ public:
     Iterator end();
 };
 
-#include "OneList.cpp"   // шаблон → реализация подключается здесь
-
+#include "OneList.cpp"
 #endif
