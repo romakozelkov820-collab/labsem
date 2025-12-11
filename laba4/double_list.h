@@ -25,8 +25,6 @@ public:
 
     void push_back(const T& value);
     void print() const;
-
-    // Требуемое по заданию — сортировки
     void shell_sort();
     void quick_sort();
 };
